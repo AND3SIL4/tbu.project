@@ -13,3 +13,5 @@ pnpm install
 # Run the main web side
 pnpm run dev
 ```
+
+_last updated on 28/11/2024_

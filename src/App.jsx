@@ -1,11 +1,5 @@
-import "./App.css";
+import AppRoutes from "./routes/Routes";
 
-function App() {
-  return (
-    <>
-      <h1>TBU project</h1>
-    </>
-  );
-}
+const App = () => <AppRoutes />;
 
 export default App;

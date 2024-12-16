@@ -1,0 +1,21 @@
+{
+  "apiUrl": "https://github.com/and3sil4",
+  "pageTitle": "Automation Anywhere",
+  "logoCompany": "logo.png",
+  "compayName": "Positiva Compañia de Seguros",
+  "customStyles": {
+    "primaryColor": "#3498db",
+    "secondaryColor": "#2ecc71"
+  },
+  "defaultVariables": {
+    "username": "Guest",
+    "region": "US"
+  },
+  "author": [
+    {
+      "name": "Felipe Silva",
+      "github": "https://github.com/AND3SIL4"
+    }
+  ],
+  "companyName": "Positiva Compañia de seguros"
+}

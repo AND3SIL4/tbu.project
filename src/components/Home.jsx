@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../api/apiClient";
-import TaskBotCard from "./TaskBotCard";
+import Footer from "./Footer";
 
 const Home = () => {
   const [taskBots, setTaskBots] = useState([]);
@@ -8,6 +7,7 @@ const Home = () => {
   return (
     <div>
       <h2>Task bot list</h2>
+      <Footer />
     </div>
   );
 };

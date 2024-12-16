@@ -9,7 +9,7 @@ const LoginForm = () => {
   });
   const navigate = useNavigate();
 
-  const handleLogin = async (e: any): Promise<any> => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const loginUrl = "/v2/authentication";

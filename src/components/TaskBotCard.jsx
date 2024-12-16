@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BotModal from "./BotModal";
 
-const TaskBotCard = ({ bot }: { bot: any }) => {
+const TaskBotCard = ({ bot }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (

@@ -19,7 +19,10 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       toast.info("Validating credentials...");
-      const response = await axios.post(config.apiUrl, credentials);
+      const response = await axios.post(
+        `${config.apiUrl}/api/v2/authentication`,
+        credentials,
+      );
       console.log(response.data);
       if (response.status == 200) {
         localStorage.setItem("token", response.data.token);

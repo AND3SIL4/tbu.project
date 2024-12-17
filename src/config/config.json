@@ -1,7 +1,7 @@
 {
-  "apiUrl": "https://github.com/and3sil4",
-  "pageTitle": "Automation Anywhere",
-  "logoCompany": "logo-gts.png",
+  "apiUrl": "https://community.cloud.automationanywhere.digital",
+  "pageTitle": "Automation Anywhere Test API",
+  "logoCompany": "logo_gts.png",
   "compayName": "Positiva Compañia de Seguros",
   "customStyles": {
     "primaryColor": "#3498db",
@@ -13,7 +13,7 @@
   },
   "author": [
     {
-      "name": "Felipe Silva",
+      "name": "Andres Silva",
       "github": "https://github.com/AND3SIL4"
     }
   ],

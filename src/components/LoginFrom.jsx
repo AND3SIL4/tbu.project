@@ -1,7 +1,8 @@
+import axios from "axios";
 import { useState } from "react";
-import axios from "../api/apiClient";
 import { useNavigate } from "react-router-dom";
 import "../styles/LoginForm.css";
+import config from "../config/config.json";
 
 const LoginForm = () => {
   // Create the initial credentials
@@ -16,9 +17,10 @@ const LoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      console.log(credentials);
-      const loginUrl = "/v2/authentication";
+      const loginUrl = `${config.apiUrl}/v2/authentication`;
       const response = await axios.post(loginUrl, credentials);
+      console.log(credentials);
+      console.log(response);
       localStorage.setItem("token", response.data.token);
       navigate("/home");
     } catch (error) {

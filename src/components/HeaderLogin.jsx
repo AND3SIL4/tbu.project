@@ -1,3 +1,5 @@
+import config from "../config/config.json";
+
 const HeaderLogin = () => {
   return (
     <header>
@@ -6,7 +8,7 @@ const HeaderLogin = () => {
           <li>
             <img
               className="w-[180px] aspect-[32/7]"
-              src="/logo_gts.png"
+              src={`/${config.logoCompany}`}
               title="Logo of the company that developed this project"
               alt="Developer company logo"
             />

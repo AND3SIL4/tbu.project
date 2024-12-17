@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/LoginForm.css";
 import config from "../config/config.json";
+import { toast } from "sonner";
 
 const LoginForm = () => {
   // Create the initial credentials
@@ -17,15 +18,18 @@ const LoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const loginUrl = `${config.apiUrl}/v2/authentication`;
-      const response = await axios.post(loginUrl, credentials);
-      console.log(credentials);
-      console.log(response);
-      localStorage.setItem("token", response.data.token);
-      navigate("/home");
+      toast.info("Validating credentials...");
+      const response = await axios.post(config.apiUrl, credentials);
+      console.log(response.data);
+      if (response.status == 200) {
+        localStorage.setItem("token", response.data.token);
+        navigate("/home");
+        toast.success(
+          `${response.status} Welcome ${response.data.user.username}`,
+        );
+      }
     } catch (error) {
-      console.error("Loging failed:", error);
-      alert("Invalid credentials");
+      toast.error(`Error: ${error.message} during authentication`);
     }
   };
   return (
@@ -39,6 +43,7 @@ const LoginForm = () => {
       <div className="flex flex-col">
         <label htmlFor="username">User name</label>
         <input
+          required
           id="username"
           type="text"
           placeholder="Ex: dev_01"
@@ -51,6 +56,7 @@ const LoginForm = () => {
       <div className="flex flex-col">
         <label htmlFor="password">Password</label>
         <input
+          required
           id="password"
           type="password"
           placeholder="Password"

@@ -1,5 +1,5 @@
 {
-  "apiUrl": "https://community.cloud.automationanywhere.digital",
+  "apiUrl": "http://localhost:5000/api/authentication",
   "pageTitle": "Automation Anywhere Test API",
   "logoCompany": "logo_gts.png",
   "compayName": "Positiva Compañia de Seguros",
@@ -19,4 +19,3 @@
   ],
   "companyName": "Positiva Compañia de seguros"
 }
-

@@ -4,12 +4,15 @@ import { useNavigate } from "react-router-dom";
 import "../styles/LoginForm.css";
 
 const LoginForm = () => {
+  // Create the initial credentials
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
+  // Initialize the navigate object
   const navigate = useNavigate();
 
+  // Call the API to log in
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -25,7 +28,7 @@ const LoginForm = () => {
   };
   return (
     <form className="flex flex-col gap-5" onSubmit={handleLogin}>
-      <div className="grid place-items-center gap-1 p-5">
+      <div className="grid place-items-center gap-1 p-5 mb-2">
         <h1 className="text-4xl font-bold">Login</h1>
         <p className="text-sm text-custom-gray">
           Login using your Automation Anywhere credentials

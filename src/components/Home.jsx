@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Footer from "./Footer";
+import { useEffect, useState } from "react";
 
 const Home = () => {
   const [taskBots, setTaskBots] = useState([]);
@@ -7,7 +6,6 @@ const Home = () => {
   return (
     <div>
       <h2>Task bot list</h2>
-      <Footer />
     </div>
   );
 };

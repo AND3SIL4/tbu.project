@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "../components/Home";
+import LoginForm from "../components/LoginFrom";
 import PrivateRoute from "./PrivateRoute";
-import Login from "../views/Login";
 
 const AppRoutes = () => (
   <Router>
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<LoginForm />} />
       {/*Protected home path*/}
       <Route
         path="/home"

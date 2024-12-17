@@ -1,7 +1,7 @@
 {
   "apiUrl": "https://github.com/and3sil4",
   "pageTitle": "Automation Anywhere",
-  "logoCompany": "logo.png",
+  "logoCompany": "logo-gts.png",
   "compayName": "Positiva Compañia de Seguros",
   "customStyles": {
     "primaryColor": "#3498db",
@@ -19,3 +19,4 @@
   ],
   "companyName": "Positiva Compañia de seguros"
 }
+

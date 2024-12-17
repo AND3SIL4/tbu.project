@@ -1,11 +1,19 @@
-import "./App.css";
+import Footer from "./components/Footer";
+import AppRoutes from "./routes/Routes";
+import validAuth from "./routes/validAuthentication";
+import HeaderHome from "./components/HeaderHome";
+import HeaderLogin from "./components/HeaderLogin";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <h1>TBU project</h1>
-    </>
+    <div className="flex flex-col min-h-screen">
+      {validAuth() ? <HeaderHome /> : <HeaderLogin />}
+      <main className="flex-1 grid place-items-center">
+        <AppRoutes />
+      </main>
+      <Footer />
+    </div>
   );
-}
+};
 
 export default App;

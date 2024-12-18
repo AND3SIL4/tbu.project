@@ -1,7 +1,8 @@
 {
   "apiUrl": "https://backend-tbu.vercel.app",
   "pageTitle": "Automation Anywhere Test API",
-  "logoCompany": "logo_gts.png",
+  "logoCompany": "positiva_logo.png",
+  "develpCompany": "logo_gts.png",
   "compayName": "Positiva Compañia de Seguros",
   "customStyles": {
     "primaryColor": "#3498db",

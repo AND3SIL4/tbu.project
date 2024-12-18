@@ -1,9 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/LoginForm.css";
-import config from "../config/config.json";
 import { toast } from "sonner";
+import config from "../config/config.json";
+import { AuthContext } from "../routes/AuthProvider";
+import "../styles/LoginForm.css";
+import { useEffect } from "react";
 
 const LoginForm = () => {
   // Create the initial credentials
@@ -11,14 +13,21 @@ const LoginForm = () => {
     username: "",
     password: "",
   });
-  // Initialize the navigate object
+  const { login } = useContext(AuthContext);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      localStorage.removeItem("token");
+    }
+  }, []);
+
   const navigate = useNavigate();
 
   // Call the API to log in
   const handleLogin = async (e) => {
+    const loadToast = toast.loading("Validating credentials...");
     e.preventDefault();
     try {
-      toast.info("Validating credentials...");
       const response = await axios.post(
         `${config.apiUrl}/api/v2/authentication`,
         credentials,
@@ -26,12 +35,15 @@ const LoginForm = () => {
       console.log(response.data);
       if (response.status == 200) {
         localStorage.setItem("token", response.data.token);
-        navigate("/home");
+        toast.dismiss(loadToast);
         toast.success(
           `${response.status} Welcome ${response.data.user.username}`,
         );
+        navigate("/home");
+        login();
       }
     } catch (error) {
+      toast.dismiss(loadToast);
       toast.error(`Error: ${error.message} during authentication`);
     }
   };
@@ -44,7 +56,12 @@ const LoginForm = () => {
         </p>
       </div>
       <div className="flex flex-col">
-        <label htmlFor="username">User name</label>
+        <label
+          htmlFor="username"
+          className="text-custom-gray font-bold cursor-pointer"
+        >
+          User name
+        </label>
         <input
           required
           id="username"
@@ -57,7 +74,12 @@ const LoginForm = () => {
         />
       </div>
       <div className="flex flex-col">
-        <label htmlFor="password">Password</label>
+        <label
+          htmlFor="password"
+          className="text-custom-gray font-bold cursor-pointer"
+        >
+          Password
+        </label>
         <input
           required
           id="password"
@@ -71,7 +93,7 @@ const LoginForm = () => {
       </div>
       <button
         type="submit"
-        className="mt-7 bg-custom-blue rounded-3xl text-white font-medium py-3 px-2 text-base"
+        className="mt-7 bg-custom-blue rounded-3xl text-white font-medium py-3 px-2 text-base hover:scale-95 hover:opacity-95 transition-all duration-300"
       >
         Login to see your bots
       </button>

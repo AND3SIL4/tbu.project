@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import config from "../config/config.json";
 import { AuthContext } from "../routes/AuthProvider";
-import "../styles/LoginForm.css";
 import { useEffect } from "react";
+import Label from "./ui/Label";
+import Input from "./ui/Input";
+import Button from "./ui/Button";
 
 const LoginForm = () => {
   // Create the initial credentials
@@ -13,12 +15,11 @@ const LoginForm = () => {
     username: "",
     password: "",
   });
+
   const { login } = useContext(AuthContext);
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      localStorage.removeItem("token");
-    }
+    // Delete token when the component is loaded for firts time
+    localStorage.removeItem("token");
   }, []);
 
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const LoginForm = () => {
         credentials,
       );
       console.log(response.data);
-      if (response.status == 200) {
+      if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
         toast.dismiss(loadToast);
         toast.success(
@@ -49,54 +50,39 @@ const LoginForm = () => {
   };
   return (
     <form className="flex flex-col gap-5" onSubmit={handleLogin}>
-      <div className="grid place-items-center gap-1 p-5 mb-2">
-        <h1 className="text-4xl font-bold">Login</h1>
+      <div className="grid place-items-center gap-1 px-5 mb-2">
+        <h1 className="text-5xl font-bold">Login</h1>
         <p className="text-sm text-custom-gray">
           Login using your Automation Anywhere credentials
         </p>
       </div>
       <div className="flex flex-col">
-        <label
-          htmlFor="username"
-          className="text-custom-gray font-bold cursor-pointer"
-        >
-          User name
-        </label>
-        <input
-          required
-          id="username"
+        <Label labelName="User name" labelFor="username" />
+        <Input
           type="text"
-          placeholder="Ex: dev_01"
           value={credentials.username}
-          onChange={(e) =>
-            setCredentials({ ...credentials, username: e.target.value })
-          }
+          id="username"
+          placeHolder="Ex: dev_01"
+          onInputChange={(value) => {
+            setCredentials({ ...credentials, username: value });
+          }}
         />
       </div>
       <div className="flex flex-col">
-        <label
-          htmlFor="password"
-          className="text-custom-gray font-bold cursor-pointer"
-        >
-          Password
-        </label>
-        <input
-          required
-          id="password"
+        <Label labelFor="password" labelName="Password" />
+        <Input
           type="password"
-          placeholder="Password"
           value={credentials.password}
-          onChange={(e) =>
-            setCredentials({ ...credentials, password: e.target.value })
+          id="password"
+          placeHolder="Password"
+          onInputChange={(value) =>
+            setCredentials({ ...credentials, password: value })
           }
         />
       </div>
-      <button
-        type="submit"
-        className="mt-7 bg-custom-blue rounded-3xl text-white font-medium py-3 px-2 text-base hover:scale-95 hover:opacity-95 transition-all duration-300"
-      >
+      <Button type="submit" className="w-full">
         Login to see your bots
-      </button>
+      </Button>
       <div className="flex items-center">
         <div className="flex-grow border-t border-custom-gray"></div>
         <span className="mx-2 text-custom-gray text-xs">

@@ -3,9 +3,10 @@ import { Toaster } from "sonner";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./components/Home";
-import LoginForm from "./components/LoginFrom";
+import LoginForm from "./components/LoginForm";
 import { AuthProvider } from "./routes/AuthProvider";
 import PrivateRoute from "./routes/PrivateRoute";
+import NotFound from "./components/NotFound";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
                   </PrivateRoute>
                 }
               />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           <Footer />

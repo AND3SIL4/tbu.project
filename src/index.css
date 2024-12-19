@@ -4,6 +4,7 @@
 @tailwind utilities;
 
 :root {
+  overflow-x: hidden;
   font-family: sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -35,3 +36,27 @@ body {
 /*Styles for dark theme in the browser*/
 /*@media (prefers-color-scheme: dark) {*/
 /*}*/
+
+/* Barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 10px;
+}
+
+/* Fondo de la pista */
+::-webkit-scrollbar-track {
+  background: #d3d3d3;
+  border-radius: 10px;
+}
+
+/* Pulgar */
+::-webkit-scrollbar-thumb {
+  background: #7a7a7a;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+/* Pulgar al pasar el mouse */
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}

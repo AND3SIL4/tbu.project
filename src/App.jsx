@@ -26,7 +26,8 @@ const App = () => {
                   </PrivateRoute>
                 }
               />
-              <Route path="*" element={<NotFound />} />
+              {/*<Route path="*" element={<NotFound />} />*/}
+              <Route path="*" element={<Home />} />
             </Routes>
           </main>
           <Footer />

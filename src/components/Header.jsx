@@ -3,13 +3,14 @@ import { useContext } from "react";
 import { AuthContext } from "../routes/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import CloseSessionIcon from "../icons/CloseSession";
+import Cookies from "js-cookie";
 
 const HeaderLogin = () => {
   const { isLoggedIn, logout } = useContext(AuthContext);
   // Instance Navigate
   const navigate = useNavigate();
   const handleLogOut = () => {
-    localStorage.removeItem("token");
+    Cookies.remove("token");
     // Got to he login form after log out
     logout();
     navigate("/", { replace: true });

@@ -1,9 +1,18 @@
 import { useState, useEffect } from "react";
 import SearchBar from "./ui/SearchBar";
 import TaskBotCard from "./TaskBotCard";
+import Cookies from "js-cookie";
 
 const Home = () => {
-  const [username, setUsername] = useState("Felipe Silva");
+  // Get the main variables
+  const userData = JSON.parse(localStorage.getItem("user_data"));
+  const token = Cookies.get("token");
+
+  // Assign local variables
+  const username = "Felipe Silva";
+
+  console.log(userData);
+  console.log("This is the token", token);
 
   useEffect(() => {}, []);
 

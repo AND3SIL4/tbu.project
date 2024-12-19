@@ -1,13 +1,13 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import Cookies from "js-cookie";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import config from "../config/config.json";
 import { AuthContext } from "../routes/AuthProvider";
-import { useEffect } from "react";
-import Label from "./ui/Label";
-import Input from "./ui/Input";
 import Button from "./ui/Button";
+import Input from "./ui/Input";
+import Label from "./ui/Label";
 
 const LoginForm = () => {
   // Create the initial credentials
@@ -18,8 +18,9 @@ const LoginForm = () => {
 
   const { login } = useContext(AuthContext);
   useEffect(() => {
-    // Delete token when the component is loaded for firts time
-    localStorage.removeItem("token");
+    Cookies.remove("token", { path: "" });
+    // Delete user data when the component is loaded for firts time
+    localStorage.removeItem("user_data");
   }, []);
 
   const navigate = useNavigate();
@@ -33,9 +34,16 @@ const LoginForm = () => {
         `${config.apiUrl}/api/v2/authentication`,
         credentials,
       );
-      console.log(response.data);
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.token);
+        // Get token
+        const token = response.data.token;
+        Cookies.set("token", token, {
+          expires: 1,
+          secure: true,
+          sameSite: "Strict",
+        });
+
+        localStorage.setItem("user_data", JSON.stringify(response.data.user));
         toast.dismiss(loadToast);
         toast.success(
           `${response.status} Welcome ${response.data.user.username}`,
